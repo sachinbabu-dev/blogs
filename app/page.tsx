@@ -14,18 +14,7 @@ export default function Home() {
   return (
     <div className="">
       <Header />
-      <main className="flex-grow  flex flex-col items-start justify-start">
-      <NavigationMenu>
-  <NavigationMenuList>
-    <NavigationMenuItem>
-      <NavigationMenuTrigger
-      >Item One</NavigationMenuTrigger>
-      <NavigationMenuContent>
-        <NavigationMenuLink>Link</NavigationMenuLink>
-      </NavigationMenuContent>
-    </NavigationMenuItem>
-  </NavigationMenuList>
-</NavigationMenu>
+      <main className="flex-grow min-h-screen flex flex-col items-start justify-start">
       </main>
       <footer className="p-4">
         footer

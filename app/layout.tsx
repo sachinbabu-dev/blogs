@@ -28,9 +28,9 @@ export default function RootLayout({
         disableTransitionOnChange
       >
       <body>
-        <div className="container relative">
+        <div className="container relative py-4">
           <section>
-            <div className="overflow-hidden rounded-[0.5rem] border bg-background shadow">
+            <div className="overflow-hidden rounded-[0.5rem] border bg-background shadow ">
               {children}
             </div>
           </section>
