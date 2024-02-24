@@ -27,7 +27,15 @@ export default function RootLayout({
         enableSystem
         disableTransitionOnChange
       >
-        {children}
+      <body>
+        <div className="container relative">
+          <section>
+            <div className="overflow-hidden rounded-[0.5rem] border bg-background shadow">
+              {children}
+            </div>
+          </section>
+        </div>
+      </body>
       </ThemeProvider>
     </html>
   );
