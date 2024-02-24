@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/themeProvider";
 
 export const metadata: Metadata = {
-  title: "Starkfolio- Blogs",
+  title: "Sachin- Blogs",
   description: "Blogs by sachin babu",
 };
 
