@@ -30,7 +30,7 @@ export default function RootLayout({
       <body>
         <div className="container relative py-4">
           <section>
-            <div className="overflow-hidden rounded-[0.5rem] border bg-background shadow ">
+            <div className="overflow-hidden rounded-[0.5rem] border bg-white dark:bg-black shadow ">
               {children}
             </div>
           </section>
