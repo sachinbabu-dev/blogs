@@ -16,22 +16,26 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { listenNowAlbums, madeForYouAlbums } from "@/data/albums";
 import { cn } from "@/lib/utils";
+import { client } from "@/sanity/lib/client";
 import { Separator } from "@radix-ui/react-dropdown-menu";
 import { PlusCircledIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import PostMain from "./post";
 
 export default function Home() {
-  const cardsData = [1, 2, 3]; 
+  const cardsData = [1, 2, 3];
+
   return (
     <div className="">
       <Header />
-      <main className="flex-grow min-h-screen flex flex-col gap-4 items-start justify-start p-6">
-      <div className="border-t">
+      <main className="flex-grow min-h-screen flex flex-col gap-4 items-start justify-start">
+        <div className="border-t">
           <div className="bg-background">
             <div className="grid lg:grid-cols-5">
               <Sidebar playlists={[]} className="hidden lg:block" />
-              <div className="col-span-3 lg:col-span-4 lg:border-l">
-                <div className="h-full px-4 py-6 lg:px-8">
+              <div className="col-span-3 lg:col-span-4">
+                <div className="h-full p-6">
                   <Tabs defaultValue="music" className="h-full space-y-6">
                     <div className="space-between flex items-center">
                       <TabsList>
@@ -43,12 +47,6 @@ export default function Home() {
                           Live
                         </TabsTrigger>
                       </TabsList>
-                      <div className="ml-auto mr-4">
-                        <Button>
-                          <PlusCircledIcon className="mr-2 h-4 w-4" />
-                          Add music
-                        </Button>
-                      </div>
                     </div>
                     <TabsContent
                       value="music"
@@ -68,16 +66,7 @@ export default function Home() {
                       <div className="relative">
                         <ScrollArea>
                           <div className="flex space-x-4 pb-4">
-                            {listenNowAlbums.map((album) => (
-                              <AlbumArtwork
-                                key={album.name}
-                                album={album}
-                                className="w-[250px]"
-                                aspectRatio="portrait"
-                                width={250}
-                                height={330}
-                              />
-                            ))}
+                            <PostMain />
                           </div>
                           <ScrollBar orientation="horizontal" />
                         </ScrollArea>
@@ -97,7 +86,7 @@ export default function Home() {
                             {madeForYouAlbums.map((album) => (
                               <AlbumArtwork
                                 key={album.name}
-                                album={album}
+                                post={album}
                                 className="w-[150px]"
                                 aspectRatio="square"
                                 width={150}
@@ -132,7 +121,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      {/* {cardsData.map((card, index) => (
+        {/* {cardsData.map((card, index) => (
         <Card key={index} className="flex flex-col overflow-hidden rounded-lg shadow-md">
           <Image
             alt="Cover"
@@ -149,9 +138,16 @@ export default function Home() {
           </CardContent>
         </Card>
       ))} */}
-      <ScrollAreaHorizontalDemo />
+        <ScrollAreaHorizontalDemo />
       </main>
       <footer className="p-4">footer</footer>
     </div>
   );
+}
+
+export async function fetchPosts() {
+  const query = '*[_type == "post"]';
+  const posts = await client.fetch(query);
+  console.log(">>>posts23", posts);
+  return posts;
 }

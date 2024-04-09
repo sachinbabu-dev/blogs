@@ -1,3 +1,4 @@
+import { AlbumArtwork } from "@/components/album-artwork";
 import Header from "@/components/header";
 import { client } from "@/sanity/lib/client";
 import React, { useEffect, useState } from "react";
@@ -10,17 +11,26 @@ export async function fetchPosts() {
 }
 
 const PostMain = () => {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<any>([]);
 
   useEffect(() => {
     fetchPosts().then(setPosts);
   }, []);
 
-    console.log(">>>posts", posts);
+  console.log(">>>posts", posts);
   return (
-    <div>
-      <Header />
-    </div>
+    <>
+      {posts?.map((item: any) => (
+        <AlbumArtwork
+          key={item._id}
+          post={item}
+          className="w-[250px]"
+          aspectRatio="portrait"
+          width={250}
+          height={330}
+        />
+      ))}
+    </>
   );
 };
 
