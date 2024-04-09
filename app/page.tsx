@@ -24,8 +24,6 @@ import { useEffect, useState } from "react";
 import PostMain from "./post";
 
 export default function Home() {
-  const cardsData = [1, 2, 3];
-
   return (
     <div className="">
       <Header />

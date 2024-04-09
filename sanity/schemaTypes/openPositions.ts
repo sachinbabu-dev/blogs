@@ -1,8 +1,8 @@
 // schemas/article.js
 
 export default {
-    name: 'article',
-    title: 'Article',
+    name: 'openPositions',
+    title: 'Open Positions',
     type: 'document',
     fields: [
       {
