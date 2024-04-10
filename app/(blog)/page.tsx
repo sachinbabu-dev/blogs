@@ -97,8 +97,9 @@ export default async function Page() {
           <Intro title={settings?.title} description={settings?.description} />
         </div>
         <div className="col-span-2 bg-blue-200">
-          {trending?.map((item: any) => 
+          {trending?.map((item: any) => (
             <NewsCard
+              key={item?._id}
               title={item.title}
               slug={item.slug}
               coverImage={item.coverImage}
@@ -106,7 +107,7 @@ export default async function Page() {
               date={item.date}
               author={item.author}
             />
-          )}
+          ))}
         </div>
         <div className="col-span-6 bg-red-500">
           {heroPost ? (
