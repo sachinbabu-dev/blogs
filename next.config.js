@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-  images: {
-    domains: ["avatars.githubusercontent.com", "images.unsplash.com"],
+module.exports = {
+  experimental: {
+    // Used to guard against accidentally leaking SANITY_API_READ_TOKEN to the browser
+    taint: true,
+  },
+  logging: {
+    fetches: { fullUrl: false },
   },
 };
-
-module.exports = nextConfig;
