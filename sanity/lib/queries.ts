@@ -35,6 +35,18 @@ const postFields = groq`
   "author": author->{"name": coalesce(name, "Anonymous"), picture},
 `;
 
+
+export const trendingQuery = groq`*[_type == "trendingNews" && defined(slug.current)] | order(date desc, _updatedAt desc) {
+  content,
+  ${postFields}
+}`;
+export type TrendingQueryResponse =
+  | (Post & {
+      content?: PortableTextBlock[] | null;
+    })
+  | null;
+
+
 export const heroQuery = groq`*[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {
   content,
   ${postFields}

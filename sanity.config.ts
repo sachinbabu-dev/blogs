@@ -15,6 +15,12 @@ import { assistWithPresets } from "@/sanity/plugins/assist";
 import author from "@/sanity/schemas/documents/author";
 import post from "@/sanity/schemas/documents/post";
 import settings from "@/sanity/schemas/singletons/settings";
+import category from "@/sanity/schemas/documents/category";
+import mainPage from "./sanity/schemas/documents/mainPage";
+import funnyNews from "./sanity/schemas/documents/funnyNews";
+import subMainArticles from "./sanity/schemas/documents/subMainArticles";
+import trendingNews from "./sanity/schemas/documents/trendingNews";
+import openPositions from "./sanity/schemas/documents/openPositions";
 
 export default defineConfig({
   basePath: studioUrl,
@@ -27,6 +33,12 @@ export default defineConfig({
       // Documents
       post,
       author,
+      category,
+      mainPage,
+      funnyNews,
+      subMainArticles,
+      trendingNews,
+      openPositions,
     ],
   },
   plugins: [

@@ -16,7 +16,9 @@ import {
   SettingsQueryResponse,
   heroQuery,
   settingsQuery,
+  trendingQuery,
 } from "@/sanity/lib/queries";
+import NewsCard from "../components/newCard";
 
 function Intro(props: { title: string | null | undefined; description: any }) {
   const title = props.title || demo.title;
@@ -25,22 +27,16 @@ function Intro(props: { title: string | null | undefined; description: any }) {
     : demo.description;
   return (
     <>
-
-      <section className="mt-16 mb-16 flex flex-col items-center lg:mb-12 lg:flex-row lg:justify-between">
-
-    
-<h1 className="text-balance text-6xl font-bold leading-tight tracking-tighter lg:pr-8 lg:text-8xl">
-  {title || demo.title}dfg
-</h1>
-<h2 className="text-pretty mt-5 text-center text-lg lg:pl-8 lg:text-left">
-  <PortableText
-    className="prose-lg"
-    value={description?.length ? description : demo.description}
-  />
-</h2>
-</section>
+      <div className="grid grid-cols-10">
+        <div className="col-span-2 bg-blue-200">1</div>
+        <div className="col-span-6 bg-red-500">
+          <h2 className="text-balance text-6xl font-bold leading-tight tracking-tighter lg:pr-8 lg:text-8xl">
+            {title || demo.title}dfg
+          </h2>
+        </div>
+        <div className="col-span-2 bg-blue-200">1</div>
+      </div>
     </>
-
   );
 }
 
@@ -85,38 +81,49 @@ function HeroPost({
 }
 
 export default async function Page() {
-  const [settings, heroPost] = await Promise.all([
+  const [settings, heroPost, trending] = await Promise.all([
     sanityFetch<SettingsQueryResponse>({
       query: settingsQuery,
     }),
     sanityFetch<HeroQueryResponse>({ query: heroQuery }),
+    sanityFetch<any>({ query: trendingQuery }),
   ]);
 
+  console.log(">>>trending", trending);
   return (
-    <div className="container mx-auto px-5">
-      <Intro title={settings?.title} description={settings?.description} />
-      {heroPost ? (
-        <HeroPost
-          title={heroPost.title}
-          slug={heroPost.slug}
-          coverImage={heroPost.coverImage}
-          excerpt={heroPost.excerpt}
-          date={heroPost.date}
-          author={heroPost.author}
-        />
-      ) : (
-        <Onboarding />
-      )}
-      {heroPost?._id && (
-        <aside>
-          <h2 className="mb-8 text-6xl font-bold leading-tight tracking-tighter md:text-7xl">
-            More Stories
-          </h2>
-          <Suspense>
-            <MoreStories skip={heroPost._id} limit={100} />
-          </Suspense>
-        </aside>
-      )}
+    <div className="mx-auto px-5">
+      <div className="grid grid-cols-10">
+        <div className="col-span-10 bg-blue-200">
+          <Intro title={settings?.title} description={settings?.description} />
+        </div>
+        <div className="col-span-2 bg-blue-200">
+          {trending?.map((item: any) => 
+            <NewsCard
+              title={item.title}
+              slug={item.slug}
+              coverImage={item.coverImage}
+              excerpt={item.excerpt}
+              date={item.date}
+              author={item.author}
+            />
+          )}
+        </div>
+        <div className="col-span-6 bg-red-500">
+          {heroPost ? (
+            <HeroPost
+              title={heroPost.title}
+              slug={heroPost.slug}
+              coverImage={heroPost.coverImage}
+              excerpt={heroPost.excerpt}
+              date={heroPost.date}
+              author={heroPost.author}
+            />
+          ) : (
+            <Onboarding />
+          )}
+        </div>
+        <div className="col-span-2 bg-blue-200">1</div>
+      </div>
     </div>
   );
 }
