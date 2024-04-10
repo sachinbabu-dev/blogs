@@ -18,7 +18,7 @@ import {
   settingsQuery,
   trendingQuery,
 } from "@/sanity/lib/queries";
-import NewsCard from "../components/newCard";
+import NewsCard from "../../components/newCard";
 
 function Intro(props: { title: string | null | undefined; description: any }) {
   const title = props.title || demo.title;
@@ -85,7 +85,7 @@ export default async function Page() {
 
   console.log(">>>trending", trending);
   return (
-    <div className="mx-auto px-5">
+    <div className="mx-auto px-5 dark:bg-black">
       <div className="grid grid-cols-10 gap-4">
 
         <div className="col-span-2 ">

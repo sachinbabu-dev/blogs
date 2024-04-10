@@ -1,8 +1,8 @@
 import React from "react";
-import CoverImage from "../(blog)/cover-image";
+import CoverImage from "../app/(blog)/cover-image";
 import Link from "next/link";
 import Image from "next/image";
-import Avatar from "../(blog)/avatar";
+import Avatar from "../app/(blog)/avatar";
 
 const NewsCard = (props: any) => {
   const { title, author, slug, coverImage } = props;

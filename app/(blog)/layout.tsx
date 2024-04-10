@@ -15,8 +15,8 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 import { SettingsQueryResponse, settingsQuery } from "@/sanity/lib/queries";
 import { resolveOpenGraphImage } from "@/sanity/lib/utils";
 import Image from "next/image";
-import { ModeToggle } from "../components/darkModeToggle";
-import { ThemeProvider } from "styled-components";
+import { ModeToggle } from "../../components/darkModeToggle";
+import { ThemeProvider } from "@/components/themeProvider";
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await sanityFetch<SettingsQueryResponse>({
@@ -106,14 +106,14 @@ export default async function RootLayout({
   console.log(">>>", metaData?.title?.default);
   return (
     <html lang="en" className={`${inter.variable} bg-white text-black`}>
-      {/* <ThemeProvider
+      <ThemeProvider
         attribute="class"
         defaultTheme="system"
         enableSystem
         disableTransitionOnChange
-      > */}
+      >
         <body>
-          <section className="min-h-screen">
+          <section className="min-h-screen bg-white dark:bg-black">
             <div className="grid grid-cols-10 w-full border-y py-2 mb-2">
               <div className="col-span-1 px-5">EN</div>
               <div className="col-span-8">
@@ -130,10 +130,7 @@ export default async function RootLayout({
                   </span>
                 </div>
               </div>
-              <div className="col-span-1">
-                {" "}
-                <ModeToggle />
-              </div>
+              <div className="col-span-1"> <ModeToggle /></div>
             </div>
             {/* {draftMode().isEnabled && <AlertBanner />} */}
             <main>{children}</main>
@@ -144,7 +141,7 @@ export default async function RootLayout({
           {draftMode().isEnabled && <VisualEditing />}
           <SpeedInsights />
         </body>
-      {/* </ThemeProvider> */}
+      </ThemeProvider>
     </html>
   );
 }
