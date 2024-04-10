@@ -27,15 +27,9 @@ function Intro(props: { title: string | null | undefined; description: any }) {
     : demo.description;
   return (
     <>
-      <div className="grid grid-cols-10">
-        <div className="col-span-2 bg-blue-200">1</div>
-        <div className="col-span-6 bg-red-500">
-          <h2 className="text-balance text-6xl font-bold leading-tight tracking-tighter lg:pr-8 lg:text-8xl">
-            {title || demo.title}dfg
-          </h2>
-        </div>
-        <div className="col-span-2 bg-blue-200">1</div>
-      </div>
+      <h2 className="text-balance text-4xl font-bold leading-tight tracking-tighter lg:pr-8 lg:text-6xl pb-3">
+        {title || demo.title}
+      </h2>
     </>
   );
 }
@@ -92,11 +86,10 @@ export default async function Page() {
   console.log(">>>trending", trending);
   return (
     <div className="mx-auto px-5">
-      <div className="grid grid-cols-10">
-        <div className="col-span-10 bg-blue-200">
-          <Intro title={settings?.title} description={settings?.description} />
-        </div>
-        <div className="col-span-2 bg-blue-200">
+      <div className="grid grid-cols-10 gap-4">
+
+        <div className="col-span-2 ">
+          <div className="text-xl font-medium mb-4">Trending 🔥</div>
           {trending?.map((item: any) => (
             <NewsCard
               key={item?._id}

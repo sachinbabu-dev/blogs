@@ -6,7 +6,7 @@ import { PortableTextBlock, VisualEditing, toPlainText } from "next-sanity";
 import { Inter } from "next/font/google";
 import { draftMode } from "next/headers";
 import { Suspense } from "react";
-
+import logo from "../logo.png";
 import AlertBanner from "./alert-banner";
 import PortableText from "./portable-text";
 
@@ -14,6 +14,9 @@ import * as demo from "@/sanity/lib/demo";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { SettingsQueryResponse, settingsQuery } from "@/sanity/lib/queries";
 import { resolveOpenGraphImage } from "@/sanity/lib/utils";
+import Image from "next/image";
+import { ModeToggle } from "../components/darkModeToggle";
+import { ThemeProvider } from "styled-components";
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await sanityFetch<SettingsQueryResponse>({
@@ -94,31 +97,54 @@ async function Footer() {
   );
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const metaData: any = await generateMetadata();
+  console.log(">>>", metaData?.title?.default);
   return (
     <html lang="en" className={`${inter.variable} bg-white text-black`}>
-      <body>
-        <section className="min-h-screen">
-          <div className="grid grid-cols-10 w-full border-y py-2">
-            <div className="col-span-1">EN</div>
-            <div className="col-span-8">
-              <div className="flex justify-center text-3xl font-semibold">Bridge Daily</div>
+      {/* <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      > */}
+        <body>
+          <section className="min-h-screen">
+            <div className="grid grid-cols-10 w-full border-y py-2 mb-2">
+              <div className="col-span-1 px-5">EN</div>
+              <div className="col-span-8">
+                <div className="flex justify-center items-center">
+                  <Image
+                    src={logo}
+                    alt="logo"
+                    width={42}
+                    height={42}
+                    className="mr-4"
+                  />
+                  <span className="text-xl font-medium">
+                    {metaData?.title?.default}
+                  </span>
+                </div>
+              </div>
+              <div className="col-span-1">
+                {" "}
+                <ModeToggle />
+              </div>
             </div>
-            <div className="col-span-1"></div>
-          </div>
-          {/* {draftMode().isEnabled && <AlertBanner />} */}
-          <main>{children}</main>
-          <Suspense>
-            <Footer />
-          </Suspense>
-        </section>
-        {draftMode().isEnabled && <VisualEditing />}
-        <SpeedInsights />
-      </body>
+            {/* {draftMode().isEnabled && <AlertBanner />} */}
+            <main>{children}</main>
+            <Suspense>
+              <Footer />
+            </Suspense>
+          </section>
+          {draftMode().isEnabled && <VisualEditing />}
+          <SpeedInsights />
+        </body>
+      {/* </ThemeProvider> */}
     </html>
   );
 }

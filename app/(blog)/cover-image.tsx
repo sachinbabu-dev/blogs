@@ -9,7 +9,8 @@ interface CoverImageProps {
 
 export default function CoverImage(props: CoverImageProps) {
   const { image: source, priority } = props;
-  const image = source?.asset?._ref ? (
+  console.log('>>>source', urlForImage(source)?.height(1000).width(2000).url() as string)
+  const image = source ? (
     <Image
       className="h-auto w-full"
       width={2000}
