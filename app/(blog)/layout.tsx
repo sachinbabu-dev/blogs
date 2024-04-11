@@ -69,7 +69,7 @@ export default async function RootLayout({
     <html lang="en" className={`${inter.variable} bg-white text-black`}>
       <ThemeProvider
         attribute="class"
-        defaultTheme="system"
+        defaultTheme="light"
         enableSystem
         disableTransitionOnChange
       >

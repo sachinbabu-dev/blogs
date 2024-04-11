@@ -6,7 +6,6 @@ import Avatar from "../app/(blog)/avatar";
 
 const NewsCard = (props: any) => {
   const { title, author, slug, coverImage } = props;
-  console.log('>>>', author)
   return (
     <div className="rounded-lg p-4 mb-4 shadow-lg">
       <div className="flex flex-col">

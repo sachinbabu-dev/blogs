@@ -26,8 +26,8 @@ export default {
         to: [{type: 'author'}],
       },
       {
-        name: 'mainImage',
-        title: 'Main Image',
+        name: 'coverImage',
+        title: 'Cover Image',
         type: 'image',
         options: {
           hotspot: true,

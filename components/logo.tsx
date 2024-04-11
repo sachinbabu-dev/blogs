@@ -9,7 +9,7 @@ const Logo = () => {
   const { theme } = useTheme();
   const logoMode = theme === "light" ? logo : logoWhite;
   return (
-    <Image src={logoMode} alt="logo" width={42} height={42} className="mr-4" />
+    <Image src={logoMode} alt="logo" width={42} height={42} className="mr-4 grayscale" />
   );
 };
 

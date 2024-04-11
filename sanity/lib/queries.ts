@@ -46,7 +46,38 @@ export type TrendingQueryResponse =
     })
   | null;
 
+  export const funnyQuery = groq`*[_type == "funnyNews" && defined(slug.current)] | order(date desc, _updatedAt desc) {
+    content,
+    ${postFields}
+  }`;
+  export type FunnyQueryResponse =
+    | (Post & {
+        content?: PortableTextBlock[] | null;
+      })
+    | null;
+  
 
+    export const subNewsQuery = groq`*[_type == "subMainArticles" && defined(slug.current)] | order(date desc, _updatedAt desc) {
+      content,
+      ${postFields}
+    }`;
+    export type SubNewsQueryResponse =
+      | (Post & {
+          content?: PortableTextBlock[] | null;
+        })
+      | null;
+ 
+      export const openPositionQuery = groq`*[_type == "openPositions" && defined(slug.current)] | order(date desc, _updatedAt desc) {
+        content,
+        ${postFields}
+      }`;
+      export type OpenPositionQueryResponse =
+        | (Post & {
+            content?: PortableTextBlock[] | null;
+          })
+        | null;
+    
+      
 export const heroQuery = groq`*[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {
   content,
   ${postFields}

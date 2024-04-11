@@ -12,7 +12,7 @@ export default function Avatar({ name, picture }: Author) {
         <div className="ml-2 h-6 w-6">
           <Image
             alt={picture?.alt || ""}
-            className="h-full rounded-full object-cover"
+            className="h-full rounded-full object-cover grayscale"
             height={48}
             width={48}
             src={
