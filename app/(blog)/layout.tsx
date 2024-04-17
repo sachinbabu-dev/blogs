@@ -3,7 +3,7 @@ import "../globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Metadata } from "next";
 import { PortableTextBlock, VisualEditing, toPlainText } from "next-sanity";
-import { Inter } from "next/font/google";
+import { Merriweather } from "next/font/google";
 import { draftMode } from "next/headers";
 import { Suspense } from "react";
 
@@ -53,12 +53,12 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
+const inter = Merriweather({
+  weight:["300", "400", "700", "900"],
+  subsets: ["latin"]
 });
 
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet"></link>
 export default async function RootLayout({
   children,
 }: {
@@ -66,7 +66,7 @@ export default async function RootLayout({
 }) {
   const metaData: any = await generateMetadata();
   return (
-    <html lang="en" className={`${inter.variable} bg-white text-black`}>
+    <html lang="en" className={`${inter.className} bg-white text-black`}>
       <ThemeProvider
         attribute="class"
         defaultTheme="light"
@@ -74,7 +74,7 @@ export default async function RootLayout({
         disableTransitionOnChange
       >
         <body>
-          <section className="min-h-screen bg-white dark:bg-black">
+          <section className="min-h-screen bg-white dark:bg-black text-slate-800">
             <Header title={metaData?.title?.default} />
             {/* {draftMode().isEnabled && <AlertBanner />} */}
             <main>{children}</main>
