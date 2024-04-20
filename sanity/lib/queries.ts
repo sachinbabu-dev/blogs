@@ -31,6 +31,7 @@ const postFields = groq`
   "slug": slug.current,
   excerpt,
   coverImage,
+  body,
   "date": coalesce(date, _updatedAt),
   "author": author->{"name": coalesce(name, "Anonymous"), picture},
 `;

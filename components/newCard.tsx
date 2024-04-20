@@ -7,14 +7,12 @@ import Avatar from "../app/(blog)/avatar";
 const NewsCard = (props: any) => {
   const { title, author, slug, coverImage } = props;
   return (
-    <div className="rounded-lg p-4 mb-4 shadow-lg">
+    <div className={`p-4 mb-1`}>
       <div className="flex flex-col">
         <Link className="group mb-3 block md:mb-4" href={`/posts/${slug}`}>
           <CoverImage image={coverImage} priority />
         </Link>
-        <div className="text-right text-sm">{title}</div>
-        <div className="text-right text-sm">{author && <Avatar name={author.name} picture={author.picture} />}</div>
-       
+        <div className="text-left text-[12px]">{title}</div>
       </div>
     </div>
   );

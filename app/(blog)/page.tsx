@@ -13,6 +13,7 @@ import MainNews from "./components/mainNews";
 import SideNewsCard from "./components/sideNews";
 import HorizontalNews from "./components/horizontalNews";
 import SideHorizontalNewsCard from "@/components/sidebarNews";
+import SubArticle from "./components/subArticle";
 
 export default async function Page() {
   const [settings, heroPost, trending, funnyNews, subNews, openPosition] =
@@ -28,6 +29,7 @@ export default async function Page() {
       sanityFetch<any>({ query: openPositionQuery }),
     ]);
 
+    console.log('funnyNews', funnyNews)
   return (
     <div className="mx-auto px-5 dark:bg-black">
       <div className="grid grid-cols-10 gap-4 border-b">
@@ -49,11 +51,13 @@ export default async function Page() {
         </div>
         <div className="col-span-4 pt-4">
           <MainNews heroPost={heroPost} />
-          <SideNewsCard news={subNews} heading="Other News" />
+          <div className="grid grid-cols-4">
+          <SubArticle news={subNews}/>
+          </div>
         </div>
         <div className="col-span-3 border-l pl-4">
           <SideNewsCard news={funnyNews} heading="Funny" />
-          <SideNewsCard news={openPosition} heading="Open position" />
+          {/* <SideNewsCard news={openPosition} heading="Open position" /> */}
         </div>
       </div>
     </div>

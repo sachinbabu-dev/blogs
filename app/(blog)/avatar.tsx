@@ -7,14 +7,14 @@ export default function Avatar({ name, picture }: Author) {
   console.log(">>>", picture);
   return (
     <div className="flex items-center text-xl justify-end">
-      <div className="text-pretty text-sm">By {name}</div>
+      <div className="text-pretty text-[10px]">By {name}</div>
       {picture?.asset?._ref ? (
         <div className="ml-2 h-6 w-6">
           <Image
             alt={picture?.alt || ""}
             className="h-full rounded-full object-cover grayscale"
-            height={48}
-            width={48}
+            height={16}
+            width={16}
             src={
               urlForImage(picture)
                 ?.height(96)

@@ -19,28 +19,11 @@ function HeroPost({
 >) {
   return (
     <article>
-      <Link className="group mb-2 block md:mb-4" href={`/posts/${slug}`}>
-        <CoverImage image={coverImage} priority />
-      </Link>
-      <div className="mb-20 md:mb-28 md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8">
-        <div>
-          <div className="text-pretty mb-4 text-2xl leading-tight lg:text-xl">
-            <Link href={`/posts/${slug}`} className="hover:underline">
-              {title}
-            </Link>
-          </div>
-          <div className="mb-4 text-lg md:mb-0">
-            <DateComponent dateString={date} />
-          </div>
+      <div className="grid grid-cols-4 border-b pb-4">
+        <div className="col-span-4">
+          <CoverImage image={coverImage} priority />
         </div>
-        <div>
-          {excerpt && (
-            <p className="text-pretty mb-4 text-lg leading-relaxed">
-              {excerpt}
-            </p>
-          )}
-          {author && <Avatar name={author.name} picture={author.picture} />}
-        </div>
+        <div className="col-span-4 pt-4 text-sm"> {title} </div>
       </div>
     </article>
   );
