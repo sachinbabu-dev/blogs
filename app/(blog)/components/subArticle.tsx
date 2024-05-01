@@ -7,9 +7,10 @@ const SubArticle = ({ news }: any) => {
     <>
       {news?.map((item: any, index: number) => (
         <div
-          className={`col-span-2 pt-4 ${
-            index === 0 ? "border-r pr-2" : ""
-          } ${index === 1 ? "pl-2" : ""} text-[12px]`}
+          key={index}
+          className={`col-span-2 pt-4 ${index === 0 ? "border-r pr-2" : ""} ${
+            index === 1 ? "pl-2" : ""
+          } text-[12px]`}
         >
           {item.title}
         </div>

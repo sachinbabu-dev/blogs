@@ -29,13 +29,13 @@ export default async function Page() {
       sanityFetch<any>({ query: openPositionQuery }),
     ]);
 
-    console.log('funnyNews', funnyNews)
+  console.log("funnyNews", funnyNews);
   return (
     <div className="mx-auto px-5 dark:bg-black">
       <div className="grid grid-cols-10 gap-4 border-b">
         <div className="col-span-3 border-r pr-4">
-          {trending?.map((item: any) => (
-            <div className="border-b w-full pt-4">
+          {trending?.map((item: any, index: number) => (
+            <div className="border-b w-full pt-4" key={index}>
               <SideHorizontalNewsCard
                 key={item?._id}
                 title={item.title}
@@ -52,7 +52,7 @@ export default async function Page() {
         <div className="col-span-4 pt-4">
           <MainNews heroPost={heroPost} />
           <div className="grid grid-cols-4">
-          <SubArticle news={subNews}/>
+            <SubArticle news={subNews} />
           </div>
         </div>
         <div className="col-span-3 border-l pl-4">

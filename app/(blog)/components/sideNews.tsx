@@ -7,7 +7,7 @@ const SideNewsCard = ({ news, heading }: any) => {
     <>
       {/* <div className="text-xl font-medium mb-4">{heading}</div> */}
       {news?.map((item: any, index: any) => (
-        <div className={`${index === 0 ? 'border-b' : ''}`}>
+        <div key={index} className={`${index === 0 ? "border-b" : ""}`}>
           <NewsCard
             key={item?._id}
             title={item.title}
