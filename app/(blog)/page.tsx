@@ -18,24 +18,30 @@ import SubArticle from "./components/subArticle";
 import NewJoinesCard from "./components/newJoines";
 
 export default async function Page() {
-  const [settings, heroPost, trending, funnyNews, subNews, openPosition, joinees] =
-    await Promise.all([
-      sanityFetch<SettingsQueryResponse>({
-        query: settingsQuery,
-      }),
-      sanityFetch<HeroQueryResponse>({ query: heroQuery }),
-      sanityFetch<any>({ query: trendingQuery }),
-      sanityFetch<any>({ query: funnyQuery }),
-      sanityFetch<any>({ query: subNewsQuery }),
-      sanityFetch<any>({ query: openPositionQuery }),
-      sanityFetch<any>({ query: joineesQuery }),
-    ]);
+  const [
+    settings,
+    heroPost,
+    trending,
+    funnyNews,
+    subNews,
+    openPosition,
+    joinees,
+  ] = await Promise.all([
+    sanityFetch<SettingsQueryResponse>({
+      query: settingsQuery,
+    }),
+    sanityFetch<HeroQueryResponse>({ query: heroQuery }),
+    sanityFetch<any>({ query: trendingQuery }),
+    sanityFetch<any>({ query: funnyQuery }),
+    sanityFetch<any>({ query: subNewsQuery }),
+    sanityFetch<any>({ query: openPositionQuery }),
+    sanityFetch<any>({ query: joineesQuery }),
+  ]);
 
-  console.log("funnyNews", joinees);
   return (
     <div className="mx-auto px-5 dark:bg-black">
       <div className="grid grid-cols-10  border-b">
-        <div className="col-span-3 border-r pr-4">
+        <div className="col-span-10 md:col-span-4 lg:col-span-3 order-2 md:order-1 border-r pr-4">
           {trending?.map((item: any, index: number) => (
             <div className="border-b w-full pt-4" key={index}>
               <SideHorizontalNewsCard
@@ -51,21 +57,20 @@ export default async function Page() {
           ))}
           {/* <HorizontalNews news={trending} heading="Trending 🔥" /> */}
         </div>
-        <div className="col-span-4 pt-4">
+        <div className="col-span-10 order-1 lg:col-span-4 md:order-2 md:col-span-6 pt-4">
           <MainNews heroPost={heroPost} />
           <div className="grid grid-cols-4">
             <SubArticle news={subNews} />
           </div>
         </div>
-        <div className="col-span-3 border-l pl-4">
-          <SideNewsCard news={funnyNews} heading="Funny" />
-          {/* <SideNewsCard news={openPosition} heading="Open position" /> */}
-        </div>
-        <div className="col-span-6 border-t border-r pl-4">
+        <div className="col-span-10 md:col-span-3 order-3 md:order-3 md:border-l md:pl-4">
           <SideNewsCard news={funnyNews} heading="Funny" />
         </div>
-        <div className="col-span-4 border-t">
-          <NewJoinesCard joinees={joinees}/>
+        <div className="col-span-10 md:col-span-6 order-4 border-t md:border-r md:pl-4">
+          <SideNewsCard news={funnyNews} heading="Funny" />
+        </div>
+        <div className="col-span-10 md:col-span-4 order-5 border-t">
+          <NewJoinesCard joinees={joinees} />
         </div>
       </div>
     </div>

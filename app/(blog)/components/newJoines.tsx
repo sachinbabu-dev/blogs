@@ -6,14 +6,12 @@ import Image from "next/image";
 import { urlForImage } from "@/sanity/lib/utils";
 
 const NewJoinesCard = ({ joinees }: any) => {
-  console.log(">>>", joinees);
-
   return (
-    <div className="grid grid-cols-4 ">
+    <div className="grid grid-cols-4 mt-1">
       {joinees?.map((item: any, index: any) => (
         <div
           key={index}
-          className="col-span-1 border-r border-b pb-2"
+          className="col-span-2 md:col-span-1 border md:border-r md:border-b pb-2"
         >
           <div className="flex justify-center items-center w-full pt-4">
           <Image

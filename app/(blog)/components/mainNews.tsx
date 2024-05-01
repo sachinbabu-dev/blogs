@@ -23,7 +23,7 @@ function HeroPost({
         <div className="col-span-4">
           <CoverImage image={coverImage} priority />
         </div>
-        <div className="col-span-4 pt-4 text-sm"> {title} </div>
+        <div className="col-span-4 pt-4 text-[12px] md:text-sm"> {title} </div>
       </div>
     </article>
   );

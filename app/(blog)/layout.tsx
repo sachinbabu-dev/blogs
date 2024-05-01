@@ -21,6 +21,15 @@ import { ThemeProvider } from "@/components/themeProvider";
 import Logo from "@/components/logo";
 import Footer from "./components/footer";
 import Header from "./components/header";
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarTrigger,
+} from "@/components/ui/menubar";
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await sanityFetch<SettingsQueryResponse>({
@@ -54,11 +63,14 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const inter = Merriweather({
-  weight:["300", "400", "700", "900"],
-  subsets: ["latin"]
+  weight: ["300", "400", "700", "900"],
+  subsets: ["latin"],
 });
 
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet"></link>
+<link
+  href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
+  rel="stylesheet"
+></link>;
 export default async function RootLayout({
   children,
 }: {
@@ -74,7 +86,17 @@ export default async function RootLayout({
         disableTransitionOnChange
       >
         <body>
-          <section className="min-h-screen bg-white dark:bg-black text-slate-800">
+          <section className="min-h-screen bg-white text-slate-800 w-full">
+            <Menubar className="hidden">
+              <MenubarMenu>
+                <MenubarTrigger>Opening</MenubarTrigger>
+                <MenubarTrigger>Funny news</MenubarTrigger>
+                <MenubarTrigger>Joinees</MenubarTrigger>
+                <MenubarTrigger>Hiring</MenubarTrigger>
+                <MenubarTrigger>Jokes</MenubarTrigger>
+              </MenubarMenu>
+            </Menubar>
+
             <Header title={metaData?.title?.default} />
             {/* {draftMode().isEnabled && <AlertBanner />} */}
             <main>{children}</main>

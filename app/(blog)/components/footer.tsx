@@ -1,59 +1,70 @@
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { SettingsQueryResponse, settingsQuery } from "@/sanity/lib/queries";
 import { PortableTextBlock } from "next-sanity";
-import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import Logo from "@/components/logo";
+import { Separator } from "@/components/ui/separator";
 
 export default async function Footer() {
-    const data = await sanityFetch<SettingsQueryResponse>({
-      query: settingsQuery,
-    });
-    const footer = data?.footer || ([] as PortableTextBlock[]);
-  
-    return (
-      <>
-        <footer className=" p-4">
-          <div className="max-w-6xl mx-auto flex flex-col items-center">
-            {/* Logo Section */}
-            <div className="mb-4">{/* <Logo color="white" size={36} /> */}</div>
-  
-            {/* Social Media Icons */}
-            <div className="flex space-x-4 mb-4">
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Facebook color="white" size={24} />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Twitter color="white" size={24} />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Instagram color="white" size={24} />
-              </a>
-              <a
-                href="https://youtube.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Youtube color="white" size={24} />
-              </a>
-            </div>
-  
-            {/* Copyright Notice */}
-            <div className="text-center text-sm">
-              © {new Date().getFullYear()} Your Company. All rights reserved.
+  const data = await sanityFetch<SettingsQueryResponse>({
+    query: settingsQuery,
+  });
+  const footer = data?.footer || ([] as PortableTextBlock[]);
+
+  return (
+    <>
+      <footer className="py-2">
+        <div className="border-t">
+          <div className="md:p-8 p-2 my-2">
+            <div className="flex flex-col mt-2">
+              <Logo type="logo" height={42} width={42} />
+              <div className="flex flex-wrap mt-2 text-[13px] text-slate-500 justify-start items-center">
+                <a href="#" className="lg:px-2 pr-2 lg:pr-0 border-r border-slate-200">
+                  Website
+                </a>
+                <a
+                  href="https://instagram.com"
+                  className="px-2 border-r border-slate-200"
+                >
+                  Instagram
+                </a>
+                <a
+                  href="https://linkedin.com"
+                  className="px-2 border-r border-slate-200"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href="https://youtube.com"
+                  className="px-2 border-r border-slate-200"
+                >
+                  Youtube
+                </a>
+                <a
+                  href="#"
+                  className="px-2 border-r border-slate-200 hidden md:block"
+                >
+                  Terms
+                </a>
+                <a href="#" className="px-2 hidden md:block">
+                  Privacy policy
+                </a>
+              </div>
+              <div className="text-[13px]  mt-6 md:mt-3 text-slate-500">
+                Bridge Daily is solely for entertainment purposes.
+                <br /> It is designed to amuse and engage without causing harm
+                or disparaging anyone. Please enjoy it as a fun and
+                light-hearted section.
+              </div>
             </div>
           </div>
-        </footer>
-      </>
-    );
-  }
+          <div className="col-span-4 border-t py-4">
+            <div className="flex justify-between text-slate-500 text-[13px] px-4 md:px-8">
+              <div className="">© 2024, bridge daily.</div>
+              <div className="">Have a nice day! 🎉</div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </>
+  );
+}
