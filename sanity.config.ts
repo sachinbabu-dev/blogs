@@ -21,6 +21,7 @@ import funnyNews from "./sanity/schemas/documents/funnyNews";
 import subMainArticles from "./sanity/schemas/documents/subMainArticles";
 import trendingNews from "./sanity/schemas/documents/trendingNews";
 import openPositions from "./sanity/schemas/documents/openPositions";
+import joinees from "./sanity/schemas/documents/joinees";
 
 export default defineConfig({
   basePath: studioUrl,
@@ -39,6 +40,7 @@ export default defineConfig({
       subMainArticles,
       trendingNews,
       openPositions,
+      joinees
     ],
   },
   plugins: [

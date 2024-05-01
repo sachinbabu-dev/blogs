@@ -58,6 +58,21 @@ export type TrendingQueryResponse =
     | null;
   
 
+    export const joineesQuery = groq`*[_type == "joinees"] | order(date desc, _updatedAt desc) {
+      content,
+      _id,
+      coverImage,
+      name,
+      place,
+      jobTitle,
+      experience
+    }`;
+    export type JoineesQueryResponse =
+      | (Post & {
+          content?: PortableTextBlock[] | null;
+        })
+      | null;
+
     export const subNewsQuery = groq`*[_type == "subMainArticles" && defined(slug.current)] | order(date desc, _updatedAt desc) {
       content,
       ${postFields}
